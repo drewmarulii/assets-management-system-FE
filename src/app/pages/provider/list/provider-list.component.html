@@ -1,0 +1,33 @@
+<div class="mt-2">
+    <button pButton pRipple label="CREATE PROVIDER" class="p-button" routerLink="/providers/new" class="mb-3"></button>
+    <p-table [value]="providers" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Photo</th>
+                <th scope="col">Code</th>
+                <th scope="col">Provider Name</th>
+                <th scope="col">Options</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-providers let-i="rowIndex">
+            <tr>
+                <td scope="row">{{ i+1 }}</td>
+                <td>
+                    <div class="btn-group">
+                        <img src="http://localhost:8080/files/{{providers.fileId}}" alt="Provider Logo"
+                            style="border-radius: 100%; width: 3rem; height: 3rem;" class="img-thumbnail">
+                    </div>
+                </td>
+                <td>{{ providers.providerCode }}</td>
+                <td>{{ providers.providerName }}</td>
+                <td>
+                    <button pButton pRipple label="REMOVE" data-bs-target="#exampleModal2" class="mr-2 p-button-danger"
+                        (click)="showDialog()"></button>
+                    <button pButton pRipple label="UPDATE" routerLink="/providers/update/1"
+                        class="p-button-secondary"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

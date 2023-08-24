@@ -1,0 +1,55 @@
+<pre>{{ checkinInsertReqDto.value | json }}</pre>
+<div class="container mt-3 mt-md-4">
+    <h1>Check-In Asset</h1>
+    <form [formGroup]="checkinInsertReqDto" (ngSubmit)="onCreate()">
+        <div class="row align-items-center">
+            <div class="grid">
+
+                <div class="col-12 md:col-2 md:gy-3">
+                    <label for="exampleFormControlInput1" class="form-label">Checkout Code <span
+                            class="text-danger">*</span></label>
+                </div>
+                <div class="col-12 md:col-10 md:gy-3">
+                    <p-dropdown [options]="codes" optionLabel="checkoutCode" optionValue="checkoutCode"
+                        id="exampleFormControlInput2" placeholder="Choose Checkout Code"
+                        (onChange)="onChangeCheckoutCode($event)"></p-dropdown>
+                </div>
+
+                <div class="col-6 md:col-2 md:gy-3">
+                    <h4 class="mt-md-4 mb-md-4">Checkin Details</h4>
+                </div>
+                <div class="col-6 md:col-10 mt-3 d-flex justify-content-end justify-content-md-start">
+                    <a pButton pRipple label="ADD" type="submit" class="p-button-success" (click)="onAdd()"></a>
+                </div>
+
+                <div class="md:col-10 md:col-offset-2">
+                    <div *ngFor="let d of detailId.controls; let i=index" formArrayName="detailId">
+                        <div>
+                            <div>
+                                <label for="exampleFormControlInput4" class="form-label">Asset <span
+                                        class="text-danger">*</span></label>
+                            </div>
+                            <div>
+                                <p-dropdown [options]="assets" optionLabel="assetName" optionValue="id"
+                                    id="exampleFormControlInput2" placeholder="Choose Asset"
+                                    [formControlName]="i.toString()"></p-dropdown>
+                            </div>
+                            <div class="mt-2">
+                                <a pButton pRipple label="DELETE" type="submit" class="p-button-danger"
+                                    (click)="onDelete(i)"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 mb-4">
+                    <div class="d-grid gap-2 d-block d-md-block mt-4">
+                        <button pButton pRipple label="RESET" class="p-button-danger mr-2"></button>
+                        <button pButton pRipple label="SUBMIT" type="submit" class="p-button"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

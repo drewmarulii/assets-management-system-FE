@@ -1,0 +1,9 @@
+<p-menubar [model]="items">
+    <ng-template pTemplate="end">
+        <p-overlayPanel #op>
+            <p-menu [model]="profilebar"></p-menu>
+        </p-overlayPanel>
+        <p-button (click)="op.toggle($event)" icon="pi pi-user" styleClass="p-button-link"></p-button>
+    </ng-template>
+</p-menubar>
+  

@@ -1,0 +1,92 @@
+<pre>{{ userInsertReqDto.value | json}}</pre>
+<div class="container mt-3 mt-md-4">
+    <button pButton pRipple label="GO BACK" class="mr-2 p-button-secondary" routerLink="/users"></button>
+    <h1>Create User Form</h1>
+    <form [formGroup]="userInsertReqDto" (ngSubmit)="onCreate()">
+        <div class="row align-items-center">
+            <div class="grid">
+                <div class="col-12 md:col-2">
+                    <label for="exampleFormControlInput1" class="form-label">Full Name <span
+                            class="text-red-600">*</span></label>
+                </div>
+                <div class="col-12 md:col-10">
+                    <input type="text" pInputText class="form-control" id="exampleFormControlInput1"
+                        formControlName="userFullName" style="width: 100%;" />
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col-12 md:col-2">
+                    <label class="form-label" id="exampleFormControlInput2">Gender <span
+                            class="text-red-600">*</span></label>
+                </div>
+                <div class="col-12 md:col-10">
+                    <div class="d-flex flex-row">
+                        <p-radioButton name="userGender" value="Male" formControlName="userGender"
+                            id="exampleFormControlInput2"></p-radioButton>
+                        <label class="form-check-label mr-4" for="userGenderMale">
+                            Male
+                        </label>
+
+                        <p-radioButton name="userGender" value="Female" formControlName="userGender"
+                            id="exampleFormControlInput2"></p-radioButton>
+                        <label class="form-check-label" for="userGenderFemale">
+                            Female
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col-12 md:col-2">
+                    <label for="floatingTextarea" class="form-label">Address <span class="text-red-600">*</span></label>
+                </div>
+                <div class="col-12 md:col-10">
+                    <textarea class="form-control" id="floatingTextarea" rows="1" cols="30" pInputTextarea
+                        formControlName="userAddress" style="width: 100%;"></textarea>
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col-12 md:col-2">
+                    <label for="exampleFormControlInput3" class="form-label">Profile Picture <span
+                            class="text-red-600">*</span></label>
+                </div>
+                <div class="col-12 md:col-10">
+                    <p-fileUpload mode="basic" chooseLabel="Choose" name="demo[]" accept="image/*"
+                        (onSelect)="fileUpload($event, file)" #file id="exampleFormControlInput3"></p-fileUpload>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="col-12 md:col-2">
+                    <label for="exampleFormControlInput4" class="form-label">Email <span
+                            class="text-red-600">*</span></label>
+                </div>
+                <div class="col-12 md:col-10">
+                    <input type="text" pInputText class="form-control" formControlName="userEmail" style="width: 100%;"
+                        id="exampleFormControlInput4" />
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col-12 md:col-2">
+                    <label for="exampleFormControlInput6" class="form-label">Role <span
+                            class="text-red-600">*</span></label>
+                </div>
+                <div class="col-12 md:col-10">
+                    <p-dropdown [options]="roles" optionLabel="roleName" optionValue="id" formControlName="roleId"
+                        id="exampleFormControlInput6" placeholder="Choose Role"></p-dropdown>
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col">
+                    <div class="d-grid gap-2 d-block d-md-block mt-4">
+                        <button pButton pRipple label="RESET" class="mr-2 p-button-danger" type="reset"></button>
+                        <button pButton pRipple label="SUBMIT" class="mr-2 p-button-primary" type="submit"
+                            [disabled]="userInsertReqDto.invalid" *ngIf="!loading"></button>
+                        <button pButton pRipple label="SUBMIT" class="mr-2 p-button-primary"
+                            *ngIf="loading"><p-progressSpinner styleClass="w-1rem h-1rem"
+                                strokeWidth="8"></p-progressSpinner></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

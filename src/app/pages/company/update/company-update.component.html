@@ -1,0 +1,53 @@
+<pre>{{companyUpdateReqDto.value | json}}</pre>
+<div class="container mt-3 mt-md-4">
+    <button pButton pRipple label="GO BACK" class="p-button-secondary" routerLink="/companies"></button>
+    <h1>Update Company Form</h1>
+    <form [formGroup]="companyUpdateReqDto" (ngSubmit)="onUpdate()">
+        <div class="row align-items-center">
+            <div class="grid">
+                <div class="col-12 md:col-2 md:gy-3">
+                    <label for="exampleFormControlInput1" class="form-label">Company Name <span
+                            class="text-red-600">*</span></label>
+                </div>
+                <div class="col-12 md:col-10 md:gy-3">
+                    <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="companyName"
+                        pInputText style="width: 100%;" />
+                </div>
+                <div class="col-12 md:col-2 md:gy-3">
+                    <label for="exampleFormControlInput2" class="form-label">Company Address <span
+                            class="text-red-600">*</span></label>
+                </div>
+                <div class="col-12 md:col-10 md:gy-3">
+                    <div class="form-floating">
+                        <textarea rows="2" cols="30" id="exampleFormControlInput2" formControlName="companyAddress"
+                            pInputTextarea style="width: 100%;"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-12 md:col-2 md:gy-3">
+                    <label for="exampleFormControlInput3" class="form-label">Company Phone <span
+                            class="text-red-600">*</span></label>
+                </div>
+                <div class="col-12 md:col-10 md:gy-3">
+                    <input type="text" class="form-control" id="exampleFormControlInput3" formControlName="companyPhone"
+                        pInputText style="width: 100%;" />
+                </div>
+                <div class="col-12 md:col-2 md:gy-3">
+                    <label for="exampleFormControlInput4" class="form-label">Picture <span
+                            class="text-red-600">*</span></label>
+                </div>
+                <div class="col-12 md:col-10 md:gy-3">
+                    <p-fileUpload mode="basic" chooseLabel="Choose" name="demo[]"
+                        url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*"
+                        (onSelect)="fileUpload($event)" id="exampleFormControlInput3"></p-fileUpload>
+                </div>
+                <div class="col-12 mb-4">
+                    <div>
+                        <button pButton pRipple label="Reset" type="reset" class="mr-2 p-button-danger"></button>
+                        <button pButton pRipple label="Save" type="submit" class="mr-2 p-button"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,27 @@
+<div class="container mt-3 mt-md-4">
+    <button pButton pRipple label="GO BACK" class="mb-3 p-button-secondary" routerLink="/checkouts"></button>
+    <h5>Check-Out Detail</h5>
+    <h1>CODE: {{code}}</h1>
+
+    <p-table [value]="details" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Asset Name</th>
+                <th scope="col">Checkout Date</th>
+                <th scope="col">Due Date</th>
+                <th scope="col">Checkin Date</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-details let-i="rowIndex">
+            <tr>
+                <td>{{ i+1 }}</td>
+                <td>{{ details.assetName }}</td>
+                <td>{{ details.checkoutDate }}</td>
+                <td>{{ details.dueDate }}</td>
+                <td>{{ details.checkinDate }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

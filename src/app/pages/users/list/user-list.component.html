@@ -1,0 +1,58 @@
+<div class="mt-2">
+    <button pButton pRipple label="CREATE USER" class="mb-3 p-button" routerLink="/users/new"></button>
+    <p-table [value]="users" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Photo</th>
+                <th scope="col">UID</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+                <th scope="col">Status</th>
+                <th scope="col">Options</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-users let-i="rowIndex">
+            <tr>
+                <td>{{ i+1 }}</td>
+                <td>
+                    <img src="http://localhost:8080/files/{{ users.fileId }}" alt="Profile Picture"
+                        style="border-radius: 100%; width: 3rem; height: 3rem;" class="img-thumbnail">
+                </td>
+                <td>{{ users.userIdNumber }}</td>
+                <td>{{ users.userFullname }}</td>
+                <td>{{ users.userGender }}</td>
+                <td>{{ users.userEmail }}</td>
+                <td>{{ users.roleName }}</td>
+                <td>
+                    <p-tag [severity]="getTag(users.isActive)">
+                        <p style="width: 5rem; height: 0.1rem;">{{ status }}</p>
+                    </p-tag>
+                </td>
+                <td>
+                    <button pButton pRipple label="IS ACTIVE" class="p-button" data-bs-target="#exampleModal1"
+                        (click)="showDialog1(users.id)"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-dialog header="User Activation" [(visible)]="visible1" [style]="{width: '50%'}">
+    <pre>{{ userUpdateIsActiveDto.value | json }}</pre>
+
+    <form [formGroup]="userUpdateIsActiveDto" (ngSubmit)="onIsActive()">
+        <div class="mb-2">
+            <label>Set Status <span [style]="{color: 'red'}">*</span> </label>
+        </div>
+        <div class="mb-4">
+            <p-dropdown [options]="activation" optionLabel="name" optionValue="value" class="mt-4"
+                [style]="{width: '100%'}" formControlName="isActive"></p-dropdown>
+        </div>
+        <div>
+            <button pButton pRipple label="SUBMIT" type="submit" class="p-button"></button>
+        </div>
+    </form>
+</p-dialog>

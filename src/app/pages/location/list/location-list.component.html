@@ -1,0 +1,86 @@
+<div class="mt-2">
+    <button pButton pRipple label="CREATE LOCATION" data-bs-target="#exampleModal" class="mb-4 p-button-primary"
+        (click)="showDialog()"></button>
+    <p-dialog header="Create Location Form" [(visible)]="visible" [style]="{ width: '360px' }">
+        {{ locationInsertReqDto.value | json }}
+        <form [formGroup]="locationInsertReqDto" (ngSubmit)="onCreate()">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-4">
+                    <label for="exampleFormControlInput1" class="form-label">Location Number <span
+                            class="text-danger">*</span></label>
+                </div>
+                <div class="col-12 col-md-8">
+                    <input type="text" pInputText formControlName="locationNumber" style="width: 100%;"/>
+                </div>
+                <div class="col-12 col-md-4 mt-2">
+                    <label for="exampleFormControlInput1" class="form-label">Location Name <span
+                            class="text-danger">*</span></label>
+                </div>
+                <div class="col-12 col-md-8 mt-2">
+                    <input type="text" pInputText formControlName="locationDetail" style="width: 100%;"/>
+                </div>
+                <div class="text-end mt-2">
+                    <button pButton pRipple label="SUBMIT" class="p-button-primary"></button>
+                </div>
+            </div>
+        </form>
+    </p-dialog>
+    <p-table [value]="locations" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Number</th>
+                <th scope="col">Detail</th>
+                <th scope="col">Options</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-locations let-i="rowIndex">
+            <tr>
+                <td>{{ i+1 }}</td>
+                <td>{{ locations.locationNumber }}</td>
+                <td>{{ locations.locationDetail}}</td>
+                <td>
+                    <button pButton pRipple label="REMOVE" data-bs-target="#exampleModal2" class="mr-2 p-button-danger"
+                        (click)="showDialog1()"></button>
+                    <button pButton pRipple label="UPDATE" data-bs-target="#exampleModal3"
+                        class="mr-2 p-button-secondary" (click)="showDialog2(locations.id)"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<!-- location remove -->
+<p-dialog header="Removing Location" [(visible)]="visible1" [style]="{ width: '360px' }">
+    <p>
+        This action will delete data. Are you sure?
+    </p>
+    <button pButton pRipple label="NO" class="p-button-secondary mr-2"></button>
+    <button pButton pRipple label="YES" class="p-button-danger"></button>
+</p-dialog>
+
+<!-- location update -->
+<p-dialog header="Update Location Form" [(visible)]="visible2" [style]="{ width: '360px' }">
+    {{ locationUpdateReqDto.value | json }}
+    <form [formGroup]="locationUpdateReqDto" (ngSubmit)="onUpdate()">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-4">
+                <label for="exampleFormControlInput1" class="form-label">Location Number <span
+                        class="text-danger">*</span></label>
+            </div>
+            <div class="col-12 col-md-8">
+                <input type="text" pInputText formControlName="locationNumber" style="width: 100%;" />
+            </div>
+            <div class="col-12 col-md-4 mt-2">
+                <label for="exampleFormControlInput1" class="form-label">Location Name <span
+                        class="text-danger">*</span></label>
+            </div>
+            <div class="col-12 col-md-8 mt-2">
+                <input type="text" pInputText formControlName="locationDetail" style="width: 100%;" />
+            </div>
+            <div class="text-end mt-2">
+                <button pButton pRipple label="SUBMIT" class="p-button-primary"></button>
+            </div>
+        </div>
+    </form>
+</p-dialog>

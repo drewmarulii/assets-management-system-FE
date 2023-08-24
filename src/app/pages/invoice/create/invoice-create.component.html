@@ -1,0 +1,75 @@
+<pre>{{ invoiceInsertReqDto.value | json }}</pre>
+<div class="container mt-3 mt-md-4">
+    <button pButton pRipple label="GO BACK" class="p-button" routerLink="/invoices"></button>
+    <h1>Create Invoice Form</h1>
+
+    <form [formGroup]="invoiceInsertReqDto" (ngSubmit)="onCreate()">
+        <div class="row align-items-center">
+            <div class="grid">
+                <div class="col-12 md:col-2 md:gy-3">
+                    <label for="exampleFormControlInput1" class="form-label">Attachment <span
+                            class="text-red-600">*</span></label>
+                </div>
+                <div class="col-12 md:col-10 md:gy-3">
+                    <p-fileUpload mode="basic" chooseLabel="Choose" name="demo[]" accept="image/*"
+                        (onSelect)="fileUpload($event, file)" #file id="exampleFormControlInput3"></p-fileUpload>
+                </div>
+
+                <div class="col-12 md:col-2 md:gy-3">
+                    <label for="exampleFormControlInput2" class="form-label">Supplier <span
+                            class="text-red-600">*</span></label>
+                </div>
+                <div class="col-12 md:col-10 md:gy-3">
+                    <p-dropdown [options]="suppliers" optionLabel="supplierName" optionValue="id"
+                        formControlName="supplierId" id="exampleFormControlInput2" placeholder="Choose Supplier"></p-dropdown>
+                </div>
+
+                <div class="col-6 md:col-2 md:gy-3">
+                    <h4>Invoice Details</h4>
+                </div>
+                <div class="col-6 md:col-10 md:gy-3">
+                    <a pButton pRipple label="ADD DETAIL" class="p-button-success" (click)="onAdd()"></a>
+                </div>
+
+                <div class="col-12 md:col-10 md:col-offset-2">
+                    <div *ngFor="let d of invoiceDetails.controls; let i=index" formArrayName="invoiceDetails">
+                        <div class="card mt-2" style="width: 100%;">
+                            <p-card header="ITEM {{i+1}}">
+                                <div [formGroupName]="i">
+                                    <div>
+                                        <label for="exampleFormControlInput3" class="form-label">Item Name <span
+                                                class="text-red-600">*</span></label>
+                                    </div>
+                                    <div>
+                                        <input type="text" class="form-control mt-2" id="exampleFormControlInput3"
+                                            formControlName="itemName" pInputText style="width: 100%;">
+                                    </div>
+                                    <div class="mt-3">
+                                        <label for="exampleFormControlInput4" class="form-label">Provider <span
+                                                class="text-red-600">*</span></label>
+                                    </div>
+                                    <div>
+                                        <p-dropdown [options]="providers" optionLabel="providerName" optionValue="id"
+                                            formControlName="providerId" id="exampleFormControlInput2" placeholder="Choose Provider"></p-dropdown>
+                                    </div>
+        
+                                    <div class="mt-3 mb-4">
+                                        <button pButton pRipple label="DELETE" class="p-button-danger"
+                                            (click)="onDelete(i)"></button>
+                                    </div>
+                                </div>
+                            </p-card>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 md:col-10 md:col-offset-2">
+                    <div class="d-grid d-block d-md-block mt-4">
+                        <button pButton pRipple label="RESET" class="p-button-danger mr-2"></button>
+                        <button pButton pRipple label="SUBMIT" type="submit" class="p-button"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

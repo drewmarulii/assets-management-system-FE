@@ -1,0 +1,30 @@
+<div class="flex justify-content-center mt-7">
+    <p-card header="Login" subheader="Assets Management System" [style]="{ width: '360px' }">
+        <form [formGroup]="loginReqDto" (ngSubmit)="onLogin()">
+            <div class="row">
+                <div class="col-12 gy-md-3">
+                    <label for="exampleFormControlInput1" class="form-label">Email</label>
+                </div>
+                <div class="col-12 gy-md-3">
+                    <input type="email" class="form-control" id="exampleFormControlInput1" formControlName="userEmail"
+                        pInputText [style]="{ width: '100%' }"/>
+                </div>
+                <div class="col-12 gy-md-3 mt-2">
+                    <label for="exampleFormControlInput2" class="form-label">Password</label>
+                </div>
+                <div class="col-12 gy-md-3">
+                    <input type="password" class="form-control" id="exampleFormControlInput2" formControlName="userPassword"
+                        pInputText [style]="{ width: '100%' }" />
+                </div>
+                <div class="col-12 mb-4">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-grid gap-2 d-block d-md-block mt-4">
+                            <p-button label="Login" type="submit" styleClass="p-button-primary" [disabled]="loginReqDto.invalid"
+                            *ngIf="!loading"></p-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </p-card>
+</div>

@@ -1,0 +1,26 @@
+<div class="mt-2">
+    <button pButton pRipple label="CREATE INVOICE" class="mb-3 p-button" routerLink="/invoices/new"></button>
+    <p-table [value]="invoices" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Code</th>
+                <th scope="col">Invoice Date</th>
+                <th scope="col">Supplier Name</th>
+                <th scope="col">Options</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-invoices let-i="rowIndex">
+            <tr>
+                <td>{{ i+1 }}</td>
+                <td>{{ invoices.invoiceCode }}</td>
+                <td>{{ invoices.invoiceDate }}</td>
+                <td>{{ invoices.supplierName }}</td>
+                <td>
+                    <button pButton pRipple label="VIEW" class="p-button"
+                        routerLink="/invoices/detail/{{invoices.invoiceCode}}"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

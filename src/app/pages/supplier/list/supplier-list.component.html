@@ -1,0 +1,42 @@
+<div class="mt-2">
+    <button pButton pRipple label="CREATE SUPPLIER" class="p-button" routerLink="/suppliers/new" class="mb-3"></button>
+    <p-table [value]="suppliers" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Photo</th>
+                <th scope="col">Code</th>
+                <th scope="col">Supplier Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Options</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-suppliers let-i="rowIndex">
+            <tr>
+                <td>{{ i+1 }}</td>
+                <td>
+                    <div class="btn-group">
+                        <img src="http://localhost:8080/files/{{suppliers.fileId}}" alt="Supplier Logo"
+                            style="border-radius: 100%; width: 3rem; height: 3rem;" class="img-thumbnail">
+                    </div>
+                </td>
+                <td>{{ suppliers.supplierCode }}</td>
+                <td>{{ suppliers.supplierName }}</td>
+                <td>{{ suppliers.supplierPhone}}</td>
+                <td>
+                    <button pButton pRipple label="REMOVE" data-bs-target="#exampleModal2" class="mr-2 p-button-danger"
+                        (click)="showDialog()"></button>
+                    <p-dialog header="Removing Supplier" [(visible)]="visible" [style]="{width: '30vw'}">
+                        <p>
+                            This action will delete data. Are you sure?
+                        </p>
+                        <button pButton pRipple label="NO" class="p-button-secondary mr-2"></button>
+                        <button pButton pRipple label="YES" class="p-button-danger"></button>
+                    </p-dialog>
+                    <button pButton pRipple label="UPDATE" routerLink="/suppliers/update/1"
+                        class="p-button-secondary"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

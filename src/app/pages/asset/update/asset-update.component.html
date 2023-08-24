@@ -1,0 +1,76 @@
+<pre>{{ assetUpdateInsertReqDto.value | json }}</pre>
+<div class="container mt-3 mt-md-4">
+    <button pButton pRipple label="GO BACK" class="mr-2 p-button-secondary" routerLink="/assets"></button>
+    <h1>Update Asset Form</h1>
+    <form [formGroup]="assetUpdateInsertReqDto" (ngSubmit)="onUpdate()">
+        <div class="row align-items-center">
+            <div class="grid">
+                <div class="col-12 md:col-2 md:gy-3">
+                    <label for="exampleFormControlInput6" class="form-label">Invoice Detail ID <span
+                            class="text-danger">*</span></label>
+                </div>
+                <div class="col-12 md:col-10 md:gy-3">
+                    <p-dropdown [options]="invDetails" optionLabel="itemName" optionValue="id"
+                        formControlName="invDetailId" id="exampleFormControlInput6"
+                        placeholder="Choose Invoice Detail"></p-dropdown>
+                </div>
+
+                <div class="col-12 md:col-2 md:gy-3">
+                    <label for="exampleFormControlInput1" class="form-label">Asset Name <span
+                            class="text-danger">*</span></label>
+                </div>
+                <div class="col-12 md:col-10 md:gy-3">
+                    <input type="text" pInputText class="form-control" id="exampleFormControlInput1"
+                        formControlName="assetName" style="width: 100%;" />
+                </div>
+
+                <div class="col-12 md:col-2 md:gy-3">
+                    <label for="exampleFormControlInput2" class="form-label">Type <span
+                            class="text-danger">*</span></label>
+                </div>
+                <div class="col-12 md:col-10 md:gy-3">
+                    <p-dropdown [options]="types" optionLabel="typeName" optionValue="id"
+                        formControlName="typeId" id="exampleFormControlInput2"
+                        placeholder="Choose Type"></p-dropdown>
+                </div>
+
+                <div class="col-12 md:col-2 md:gy-3">
+                    <label for="exampleFormControlInput3" class="form-label">Status <span
+                            class="text-danger">*</span></label>
+                </div>
+                <div class="col-12 md:col-10 md:gy-3">
+                    <p-dropdown [options]="status" optionLabel="statusName" optionValue="id"
+                        formControlName="statusId" id="exampleFormControlInput3"
+                        placeholder="Choose Status"></p-dropdown>
+                </div>
+
+                <div class="col-12 md:col-2 md:gy-3">
+                    <label for="exampleFormControlInput4" class="form-label">Company <span
+                            class="text-danger">*</span></label>
+                </div>
+                <div class="col-12 md:col-10 md:gy-3">
+                    <p-dropdown [options]="companies" optionLabel="companyName" optionValue="id"
+                        formControlName="companyId" id="exampleFormControlInput3"
+                        placeholder="Choose Company"></p-dropdown>
+                </div>
+
+                <div class="col-12 md:col-2 md:gy-3">
+                    <label for="exampleFormControlInput5" class="form-label">Asset File <span
+                            class="text-danger">*</span></label>
+                </div>
+                <div class="col-12 md:col-10 md:gy-3">
+                    <p-fileUpload mode="basic" chooseLabel="Choose" name="demo[]" accept="image/*"
+                        (onSelect)="fileUpload($event, file)" #file id="exampleFormControlInput3"></p-fileUpload>
+                </div>
+
+                <div class="col-12 mb-4">
+                    <div class="d-grid gap-2 d-block d-md-block mt-4">
+                        <button pButton pRipple label="RESET" class="mr-2 p-button-danger" type="reset"></button>
+                        <button pButton pRipple label="SUBMIT" class="mr-2 p-button-primary" type="submit"></button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
